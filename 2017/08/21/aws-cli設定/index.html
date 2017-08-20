@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>aws cli設定 | Not Nike</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="1. aws cli インストール1pip install --upgrade --user awscli 2. aws cli インストール確認1aws --version 3. aws cli プロファイル設定 特にユーザを分ける必要がない方※後で上書きできます。 1$ aws configure  または、プロファイル分けて使いたい方は以下のコマンド 1$ aws configure --p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="aws cli設定">
+<meta property="og:url" content="https://tsukumonasu.github.io/2017/08/21/aws-cli設定/index.html">
+<meta property="og:site_name" content="Not Nike">
+<meta property="og:description" content="1. aws cli インストール1pip install --upgrade --user awscli 2. aws cli インストール確認1aws --version 3. aws cli プロファイル設定 特にユーザを分ける必要がない方※後で上書きできます。 1$ aws configure  または、プロファイル分けて使いたい方は以下のコマンド 1$ aws configure --p">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2017-08-20T21:47:21.961Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="aws cli設定">
+<meta name="twitter:description" content="1. aws cli インストール1pip install --upgrade --user awscli 2. aws cli インストール確認1aws --version 3. aws cli プロファイル設定 特にユーザを分ける必要がない方※後で上書きできます。 1$ aws configure  または、プロファイル分けて使いたい方は以下のコマンド 1$ aws configure --p">
+  
+    <link rel="alternative" href="/atom.xml" title="Not Nike" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Not Nike</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="/">Home</a></li><li><a href="/archives">Archives</a></li>
+			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
+			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
+		</ul>
+	</nav>
+	<div id="search-form-wrap">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://tsukumonasu.github.io"></form>
+	</div>
+</header>
+    <div id="main">
+      <article id="post-aws-cli設定" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2017/08/21/aws-cli設定/" class="article-date">
+  <time datetime="2017-08-20T21:46:12.000Z" itemprop="datePublished">2017-08-21</time>
+</a>
+		</span>
+		<span class="meta-elements author">Tatsuya Naiki</span>
+		<div class="commentscount">
+			
+				<a href="https://tsukumonasu.github.io/2017/08/21/aws-cli設定/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      aws cli設定
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<h3 id="1-aws-cli-インストール"><a href="#1-aws-cli-インストール" class="headerlink" title="1. aws cli インストール"></a>1. aws cli インストール</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install --upgrade --user awscli</div></pre></td></tr></table></figure>
+<h3 id="2-aws-cli-インストール確認"><a href="#2-aws-cli-インストール確認" class="headerlink" title="2. aws cli インストール確認"></a>2. aws cli インストール確認</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aws --version</div></pre></td></tr></table></figure>
+<h3 id="3-aws-cli-プロファイル設定"><a href="#3-aws-cli-プロファイル設定" class="headerlink" title="3. aws cli プロファイル設定"></a>3. aws cli プロファイル設定</h3><ul>
+<li><p>特にユーザを分ける必要がない方<br>※後で上書きできます。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ aws configure</div></pre></td></tr></table></figure>
+</li>
+<li><p>または、プロファイル分けて使いたい方は以下のコマンド</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ aws configure --profile jaws-ug-handson</div></pre></td></tr></table></figure>
+</li>
+<li><p>内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">AWS Access Key ID [None]: ****************ABCD</div><div class="line">AWS Secret Access Key [None]: ****************ABCD</div><div class="line">Default region name [None]: ap-northeast-1</div><div class="line">Default output format [None]: json</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="4-設定内容確認"><a href="#4-設定内容確認" class="headerlink" title="4. 設定内容確認"></a>4. 設定内容確認</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ aws configure list</div><div class="line">      Name                    Value             Type    Location</div><div class="line">      ----                    -----             ----    --------</div><div class="line">   profile                &lt;not set&gt;             None    None</div><div class="line">access_key     ****************ABCD shard-credentials-file</div><div class="line">secret_key     ****************ABCD shard-credentials-file      </div><div class="line">    region           ap-northeast-1       config_file    ~/.aws/config</div></pre></td></tr></table></figure>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/08/21/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+    </div>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:tsukumonasu.github.io">
+  </form>
+</div>
+<footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Not Nike</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2017 Tatsuya Naiki<br>
+		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	</span>
+</footer>
+    
+<script>
+  var disqus_shortname = 'https-tsukumonasu-github-io';
+  
+  var disqus_url = 'https://tsukumonasu.github.io/2017/08/21/aws-cli設定/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

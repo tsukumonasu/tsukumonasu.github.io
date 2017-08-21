@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   <link href="https://tsukumonasu.github.io/" rel="hub"/>
   <link href="https://tsukumonasu.github.io/"/>
-  <updated>2017-08-20T21:47:21.961Z</updated>
+  <updated>2017-08-21T00:32:12.399Z</updated>
   <id>https://tsukumonasu.github.io/</id>
   
   <author>
@@ -14,6 +14,22 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>静的Webサイト作成</title>
+    <link href="https://tsukumonasu.github.io/2017/08/21/%E9%9D%99%E7%9A%84Web%E3%82%B5%E3%82%A4%E3%83%88%E4%BD%9C%E6%88%90/"/>
+    <id>https://tsukumonasu.github.io/2017/08/21/静的Webサイト作成/</id>
+    <published>2017-08-21T00:31:47.000Z</published>
+    <updated>2017-08-21T00:32:12.399Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;S3-静的ウェブサイト作成&quot;&gt;&lt;a href=&quot;#S3-静的ウェブサイト作成&quot; class=&quot;headerlink&quot; title=&quot;S3 静的ウェブサイト作成&quot;&gt;&lt;/a&gt;S3 静的ウェブサイト作成&lt;/h1&gt;&lt;h3 id=&quot;1-バケット名設定&quot;&gt;&lt;a href=&quot;#
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>aws cli設定</title>
@@ -41,20 +57,6 @@
     <summary type="html">
     
       &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>20170822_jaus-ug</title>
-    <link href="https://tsukumonasu.github.io/2017/08/21/20170822-jaus-ug/"/>
-    <id>https://tsukumonasu.github.io/2017/08/21/20170822-jaus-ug/</id>
-    <published>2017-08-20T20:20:06.000Z</published>
-    <updated>2017-08-20T20:21:54.795Z</updated>
-    
-    <summary type="html">
     
     </summary>
     

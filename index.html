@@ -167,78 +167,6 @@
 
 
   
-    <article id="post-20170822-jaws-ug" class="post">
-	<footer class="entry-meta-header">
-		<span class="meta-elements date">
-			<a href="/2017/08/21/20170822-jaws-ug/" class="article-date">
-  <time datetime="2017-08-20T20:29:28.000Z" itemprop="datePublished">2017-08-21</time>
-</a>
-		</span>
-		<span class="meta-elements author">Tatsuya Naiki</span>
-		<div class="commentscount">
-			
-				<a href="https://tsukumonasu.github.io/2017/08/21/20170822-jaws-ug/#disqus_thread" class="article-comment-link">Comments</a>
-			
-		</div>
-	</footer>
-	
-	<header class="entry-header">
-		
-  
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/2017/08/21/20170822-jaws-ug/">20170822-jaws-ug</a>
-    </h1>
-  
-
-	</header>
-	<div class="entry-content">
-		
-    	<h1 id="S3-静的ウェブサイト作成"><a href="#S3-静的ウェブサイト作成" class="headerlink" title="S3 静的ウェブサイト作成"></a>S3 静的ウェブサイト作成</h1><h3 id="1-バケット名設定"><a href="#1-バケット名設定" class="headerlink" title="1.  バケット名設定"></a>1.  バケット名設定</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">BUCKET_NAME=[your-name]-bucket-test-20170822</div></pre></td></tr></table></figure>
-<h3 id="2-バケット名重複確認"><a href="#2-バケット名重複確認" class="headerlink" title="2. バケット名重複確認"></a>2. バケット名重複確認</h3><p>コマンド<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aws s3 ls s3://$&#123;BUCKET_NAME&#125;</div></pre></td></tr></table></figure></p>
-<p>結果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">An error occurred (NoSuchBucket) when calling the ListObjects operation: The specified bucket does not exist</div></pre></td></tr></table></figure></p>
-<h3 id="3-バケット作成"><a href="#3-バケット作成" class="headerlink" title="3. バケット作成"></a>3. バケット作成</h3><p>コマンド<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aws s3 mb s3://$&#123;BUCKET_NAME&#125;</div></pre></td></tr></table></figure></p>
-<p>結果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">aws s3 mb s3://$&#123;BUCKET_NAME&#125;</div><div class="line">make_bucket: naiki-backet-test-20170821</div></pre></td></tr></table></figure></p>
-<h3 id="4-ポリシー設定"><a href="#4-ポリシー設定" class="headerlink" title="4. ポリシー設定"></a>4. ポリシー設定</h3><p>コマンド<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aws s3 mb s3://$&#123;BUCKET_NAME&#125;</div></pre></td></tr></table></figure></p>
-<p>結果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make_bucket: naiki-backet-test-20170822</div></pre></td></tr></table></figure></p>
-<h3 id="5-ポリシーファイルを設定"><a href="#5-ポリシーファイルを設定" class="headerlink" title="5. ポリシーファイルを設定"></a>5. ポリシーファイルを設定</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">POLICY_FILE_NAME=&quot;bucket-policy.json&quot;</div></pre></td></tr></table></figure>
-<h3 id="6-ポリシーファイル作成"><a href="#6-ポリシーファイル作成" class="headerlink" title="6. ポリシーファイル作成"></a>6. ポリシーファイル作成</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">cat &lt;&lt;ETX&gt;$&#123;POLICY_FILE_NAME&#125;</div><div class="line">&#123;</div><div class="line">  &quot;Version&quot;:&quot;2012-10-17&quot;,</div><div class="line">  &quot;Statement&quot;:[&#123;</div><div class="line">	&quot;Sid&quot;:&quot;PublicReadForGetBucketObjects&quot;,</div><div class="line">        &quot;Effect&quot;:&quot;Allow&quot;,</div><div class="line">	  &quot;Principal&quot;: &quot;*&quot;,</div><div class="line">      &quot;Action&quot;:[&quot;s3:GetObject&quot;],</div><div class="line">      &quot;Resource&quot;:[&quot;arn:aws:s3:::$&#123;BUCKET_NAME&#125;/*&quot;</div><div class="line">      ]</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div><div class="line">ETX</div></pre></td></tr></table></figure>
-<h3 id="7-ポリシーファイル確認"><a href="#7-ポリシーファイル確認" class="headerlink" title="7. ポリシーファイル確認"></a>7. ポリシーファイル確認</h3><p>コマンド<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat $&#123;POLICY_FILE_NAME&#125;</div></pre></td></tr></table></figure></p>
-<p>結果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;Version&quot;:&quot;2012-10-17&quot;,</div><div class="line">  &quot;Statement&quot;:[&#123;</div><div class="line">&quot;Sid&quot;:&quot;PublicReadForGetBucketObjects&quot;,</div><div class="line">        &quot;Effect&quot;:&quot;Allow&quot;,</div><div class="line">  &quot;Principal&quot;: &quot;*&quot;,</div><div class="line">      &quot;Action&quot;:[&quot;s3:GetObject&quot;],</div><div class="line">      &quot;Resource&quot;:[&quot;arn:aws:s3:::naiki-backet-test-20170821/*&quot;</div><div class="line">      ]</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="8-バケットポリシーの設定"><a href="#8-バケットポリシーの設定" class="headerlink" title="8. バケットポリシーの設定"></a>8. バケットポリシーの設定</h3><p>コマンド<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">aws s3api put-bucket-policy \</div><div class="line">    --bucket $&#123;BUCKET_NAME&#125; \</div><div class="line">    --policy file://$&#123;POLICY_FILE_NAME&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="9-バケットポリシーの確認"><a href="#9-バケットポリシーの確認" class="headerlink" title="9. バケットポリシーの確認"></a>9. バケットポリシーの確認</h3><p>コマンド<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">aws s3api get-bucket-policy \</div><div class="line">    --bucket $&#123;BUCKET_NAME&#125;</div></pre></td></tr></table></figure></p>
-<p>結果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;Policy&quot;: &quot;&#123;\&quot;Version\&quot;:\&quot;2012-10-17\&quot;,\&quot;Statement\&quot;:[&#123;\&quot;Sid\&quot;:\&quot;PublicReadForGetBucketObjects\&quot;,\&quot;Effect\&quot;:\&quot;Allow\&quot;,\&quot;Principal\&quot;:\&quot;*\&quot;,\&quot;Action\&quot;:\&quot;s3:GetObject\&quot;,\&quot;Resource\&quot;:\&quot;arn:aws:s3:::naiki-backet-test-20170821/*\&quot;&#125;]&#125;&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="10-ウェブサイトホスティング設定"><a href="#10-ウェブサイトホスティング設定" class="headerlink" title="10. ウェブサイトホスティング設定"></a>10. ウェブサイトホスティング設定</h3><p>コマンド<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">aws s3 website s3://$&#123;BUCKET_NAME&#125;/ \</div><div class="line">    --index-document index.htm</div></pre></td></tr></table></figure></p>
-<h3 id="11-ウェブサイトホスティング設定の確認"><a href="#11-ウェブサイトホスティング設定の確認" class="headerlink" title="11. ウェブサイトホスティング設定の確認"></a>11. ウェブサイトホスティング設定の確認</h3><p>コマンド<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">aws s3api get-bucket-website \</div><div class="line">    --bucket $&#123;BUCKET_NAME&#125;</div></pre></td></tr></table></figure></p>
-<p>結果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;IndexDocument&quot;: &#123;</div><div class="line">        &quot;Suffix&quot;: &quot;index.htm&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="12-アップロードするファイル名設定"><a href="#12-アップロードするファイル名設定" class="headerlink" title="12. アップロードするファイル名設定"></a>12. アップロードするファイル名設定</h3><p>コマンド<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HTML_FILE_NAME=&quot;index.htm&quot;</div></pre></td></tr></table></figure></p>
-<h3 id="13-アップロードするファイル作成"><a href="#13-アップロードするファイル作成" class="headerlink" title="13. アップロードするファイル作成"></a>13. アップロードするファイル作成</h3><p>コマンド<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">cat &lt;&lt;ETX&gt;index.htm</div><div class="line">&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; &gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;title&gt;My Website Home Page&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">  &lt;h1&gt;Welcome to my website&lt;/h1&gt;</div><div class="line">  &lt;p&gt;Now hosted on Amazon S3!&lt;/p&gt;</div><div class="line">  &lt;p&gt;$&#123;BUCKET_NAME&#125;&lt;/p&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">ETX</div></pre></td></tr></table></figure></p>
-<h3 id="14-コンテンツのアップロード"><a href="#14-コンテンツのアップロード" class="headerlink" title="14. コンテンツのアップロード"></a>14. コンテンツのアップロード</h3><p>コマンド<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aws s3 cp $&#123;HTML_FILE_NAME&#125; s3://$&#123;BUCKET_NAME&#125;/</div></pre></td></tr></table></figure></p>
-<p>結果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">upload: ./index.htm to s3://naiki-backet-test-20170821/index.htm</div></pre></td></tr></table></figure></p>
-<h3 id="15-バケットの内容を確認"><a href="#15-バケットの内容を確認" class="headerlink" title="15. バケットの内容を確認"></a>15. バケットの内容を確認</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aws s3 ls s3://$&#123;BUCKET_NAME&#125;/</div></pre></td></tr></table></figure>
-<h3 id="16-エンドポイント名生成"><a href="#16-エンドポイント名生成" class="headerlink" title="16. エンドポイント名生成"></a>16. エンドポイント名生成</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">BUCKET_ENDPOINT=&quot;http://$&#123;BUCKET_NAME&#125;.s3-website-`aws s3api get-bucket-location --bucket $&#123;BUCKET_NAME&#125; --output text`.amazonaws.com&quot; \</div><div class="line">    &amp;&amp; echo $&#123;BUCKET_ENDPOINT&#125;</div></pre></td></tr></table></figure>
-<h3 id="17-表示されたURLへブラウザにアクセスする"><a href="#17-表示されたURLへブラウザにアクセスする" class="headerlink" title="17. 表示されたURLへブラウザにアクセスする"></a>17. 表示されたURLへブラウザにアクセスする</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Welcome to my website</div><div class="line"></div><div class="line">Now hosted on Amazon S3!</div><div class="line"></div><div class="line">naiki-backet-test-20170821</div></pre></td></tr></table></figure>
-
-    
-	</div>
-	<footer class="entry-footer">
-		<div class="entry-meta-footer">
-			<span class="category">
-				
-			</span>
-			<span class="tags">
-				
-			</span>
-		</div>
-	</footer>
-	
-</article>
-
-
-	<hr class="article-devider">
-
-
-
-  
     <article id="post-20170822-jaus-ug" class="post">
 	<footer class="entry-meta-header">
 		<span class="meta-elements date">
@@ -275,57 +203,6 @@
 			</span>
 			<span class="tags">
 				
-			</span>
-		</div>
-	</footer>
-	
-</article>
-
-
-	<hr class="article-devider">
-
-
-
-  
-    <article id="post-hello-my-post" class="post">
-	<footer class="entry-meta-header">
-		<span class="meta-elements date">
-			<a href="/2017/07/23/hello-my-post/" class="article-date">
-  <time datetime="2017-07-23T09:03:00.000Z" itemprop="datePublished">2017-07-23</time>
-</a>
-		</span>
-		<span class="meta-elements author">Tatsuya Naiki</span>
-		<div class="commentscount">
-			
-				<a href="https://tsukumonasu.github.io/2017/07/23/hello-my-post/#disqus_thread" class="article-comment-link">Comments</a>
-			
-		</div>
-	</footer>
-	
-	<header class="entry-header">
-		
-  
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/2017/07/23/hello-my-post/">hello-my-post</a>
-    </h1>
-  
-
-	</header>
-	<div class="entry-content">
-		
-    	<h1 id="見出し"><a href="#見出し" class="headerlink" title="見出し"></a>見出し</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var hoge:String = &quot;ぼくのテスト&quot;</div></pre></td></tr></table></figure>
-
-    
-	</div>
-	<footer class="entry-footer">
-		<div class="entry-meta-footer">
-			<span class="category">
-				
-			</span>
-			<span class="tags">
-				
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test</a></li></ul>
-
 			</span>
 		</div>
 	</footer>

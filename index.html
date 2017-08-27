@@ -48,6 +48,65 @@
     <div id="main">
       
   
+    <article id="post-20170822ハンズオンの後片付け" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2017/08/28/20170822ハンズオンの後片付け/" class="article-date">
+  <time datetime="2017-08-27T17:56:31.000Z" itemprop="datePublished">2017-08-28</time>
+</a>
+		</span>
+		<span class="meta-elements author">Tatsuya Naiki</span>
+		<div class="commentscount">
+			
+				<a href="https://tsukumonasu.github.io/2017/08/28/20170822ハンズオンの後片付け/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2017/08/28/20170822ハンズオンの後片付け/">20170822ハンズオンの後片付け</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<h2 id="後片付けコマンド"><a href="#後片付けコマンド" class="headerlink" title="後片付けコマンド"></a>後片付けコマンド</h2><h3 id="1-削除対象インスタンス-1の取得"><a href="#1-削除対象インスタンス-1の取得" class="headerlink" title="1. 削除対象インスタンス#1の取得"></a>1. 削除対象インスタンス#1の取得</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">EC2_INSTANCE_ID1=`aws ec2 describe-instances \</div><div class="line">  --filters Name=private-ip-address,Values=172.31.0.201 \</div><div class="line">  --query &apos;Reservations[].Instances[].InstanceId&apos; \</div><div class="line">  --output text` &amp;&amp; echo $&#123;EC2_INSTANCE_ID1&#125;</div></pre></td></tr></table></figure>
+<h3 id="2-削除対象インスタンス-2の取得"><a href="#2-削除対象インスタンス-2の取得" class="headerlink" title="2. 削除対象インスタンス#2の取得"></a>2. 削除対象インスタンス#2の取得</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">EC2_INSTANCE_ID2=`aws ec2 describe-instances \</div><div class="line">  --filters Name=private-ip-address,Values=172.31.16.201 \</div><div class="line">  --query &apos;Reservations[].Instances[].InstanceId&apos; \</div><div class="line">  --output text` &amp;&amp; echo $&#123;EC2_INSTANCE_ID2&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-削除対象インスタンス-3の取得"><a href="#3-削除対象インスタンス-3の取得" class="headerlink" title="3. 削除対象インスタンス#3の取得"></a>3. 削除対象インスタンス#3の取得</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">EC2_INSTANCE_ID3=`aws ec2 describe-instances \</div><div class="line">  --filters Name=private-ip-address,Values=172.31.16.202 \</div><div class="line">  --query &apos;Reservations[].Instances[].InstanceId&apos; \</div><div class="line">  --output text` &amp;&amp; echo $&#123;EC2_INSTANCE_ID3&#125;</div></pre></td></tr></table></figure>
+<h3 id="4-EC2インスタンスの削除"><a href="#4-EC2インスタンスの削除" class="headerlink" title="4. EC2インスタンスの削除"></a>4. EC2インスタンスの削除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aws ec2 terminate-instances --instance-id $&#123;EC2_INSTANCE_ID1&#125; $&#123;EC2_INSTANCE_ID2&#125; $&#123;EC2_INSTANCE_ID3&#125;</div></pre></td></tr></table></figure>
+<h3 id="5-削除対象ロードバランサの取得"><a href="#5-削除対象ロードバランサの取得" class="headerlink" title="5. 削除対象ロードバランサの取得"></a>5. 削除対象ロードバランサの取得</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">LOAD_BALANCER_ARN=`aws elbv2 describe-load-balancers --names elb-handson-lb-20170822 \</div><div class="line">  --query &apos;LoadBalancers[].LoadBalancerArn&apos; --output text` &amp;&amp; echo $&#123;LOAD_BALANCER_ARN&#125;</div></pre></td></tr></table></figure>
+<h3 id="6-ロードバランサの削除"><a href="#6-ロードバランサの削除" class="headerlink" title="6. ロードバランサの削除"></a>6. ロードバランサの削除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aws elbv2 delete-load-balancer --load-balancer-arn $&#123;LOAD_BALANCER_ARN&#125;</div></pre></td></tr></table></figure>
+<h3 id="7-削除対象ターゲットグループの取得"><a href="#7-削除対象ターゲットグループの取得" class="headerlink" title="7. 削除対象ターゲットグループの取得"></a>7. 削除対象ターゲットグループの取得</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TARGET_GROUP_ARN=`aws elbv2 describe-target-groups --names elb-handson-lb-tg --query &apos;TargetGroups[].TargetGroupArn&apos; --output text` &amp;&amp; echo $&#123;TARGET_GROUP_ARN&#125;</div></pre></td></tr></table></figure>
+<h3 id="8-ターゲットグループの削除"><a href="#8-ターゲットグループの削除" class="headerlink" title="8. ターゲットグループの削除"></a>8. ターゲットグループの削除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aws elbv2 delete-target-group --target-group-arn $&#123;TARGET_GROUP_ARN&#125;</div></pre></td></tr></table></figure>
+<h3 id="9-セキュリティグループの削除"><a href="#9-セキュリティグループの削除" class="headerlink" title="9. セキュリティグループの削除"></a>9. セキュリティグループの削除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aws ec2 delete-security-group --group-name elb-handson-20170822-sg</div></pre></td></tr></table></figure>
+<h3 id="10-登録したイメージIDの取得"><a href="#10-登録したイメージIDの取得" class="headerlink" title="10. 登録したイメージIDの取得"></a>10. 登録したイメージIDの取得</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">IMAGE_ID=`aws ec2 describe-images --filters &quot;Name=name,Values=elb-handson-ami-20170822&quot; --query &apos;Images[].ImageId&apos; --output text` &amp;&amp; echo $&#123;IMAGE_ID&#125;</div></pre></td></tr></table></figure>
+<h3 id="11-登録したイメージの削除"><a href="#11-登録したイメージの削除" class="headerlink" title="11.登録したイメージの削除"></a>11.登録したイメージの削除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aws ec2 deregister-image --image-id $&#123;IMAGE_ID&#125;</div></pre></td></tr></table></figure>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
     <article id="post-cloudwatch-alertによるALB障害監視と復旧" class="post">
 	<footer class="entry-meta-header">
 		<span class="meta-elements date">
